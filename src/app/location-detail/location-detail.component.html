@@ -1,0 +1,31 @@
+<div *ngIf="location" class="row">
+  <div class="assets row">
+    <div class="image col-xs-6"><img style="width:100%;" src="assets/location-manager/assets/images/{{location.billboard_id}} {{location.panel}}.jpg" class="img-responsive"></div>
+    <div class="image col-xs-6">
+      <img class="img-responsive" style="width:100%;" src="//maps.googleapis.com/maps/api/staticmap?center={{location.latitude}},{{location.longitude}}&markers=color:blue%7C{{location.latitude}},{{location.longitude}}&size=250x150&zoom=10&maptype=hybrid&sensor=false&key=AIzaSyCnCmpnxnMX-HLfiR4U2FvinL7dFmNVUTI">
+    </div>
+  </div>
+  <div class="info row">
+    <div class="col-xs-6">
+      <div class="row">City: {{location.city}}</div>
+      <div class="row">Billboard ID: {{location.billboard_id}}</div>
+      <div class="row">Location: {{location.location}}</div>
+      <div class="row">Orientation: {{location.orientation}}</div>
+    </div>
+    <div class="col-xs-6">
+      <div class="row">Size: {{location.size}}</div>
+      <div class="row">County: {{location.county}}</div>
+      <div class="row">Highway: {{location.highway}}</div>
+      <div class="row">Directions:
+        <span *ngFor="let direction of location.directions">
+                  <a href="{{apibase}}/locations/{{direction.id}}" target="_blank" [ngSwitch]="direction.facing">
+                      <i *ngSwitchCase="'northbound'" class="fas fa-arrow-alt-circle-up" data-toggle="tooltip" data-placement="top" title="Northbound"></i>
+                      <i *ngSwitchCase="'southbound'" class="fas fa-arrow-alt-circle-down" data-toggle="tooltip" data-placement="top" title="Southbound"></i>
+                      <i *ngSwitchCase="'westbound'" class="fas fa-arrow-alt-circle-left" data-toggle="tooltip" data-placement="top" title="Westbound"></i>
+                      <i *ngSwitchCase="'eastbound'" class="fas fa-arrow-alt-circle-right" data-toggle="tooltip" data-placement="top" title="Eastbound"></i>
+                  </a>
+                </span>
+      </div>
+    </div>
+  </div>
+</div>

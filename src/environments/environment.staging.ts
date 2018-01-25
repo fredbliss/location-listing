@@ -3,8 +3,8 @@ import 'zone.js/dist/zone';
 
 export const environment = {
   production: true,
-  domain: 'http://www.visualoutdoor.com',
-  apiUrl: 'http://www.visualoutdoor.com/assets/location-manager-api/public',
+  domain: 'https://vo.intelligentspark.com',
+  apiUrl: 'https://vo.intelligentspark.com/assets/location-manager-api/public',
   assetsUrl: '/assets/location-manager/assets',
   apiVer: 1
 };

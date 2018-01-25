@@ -21,4 +21,3 @@ export const googleMapsConfig = {
 export const generalSettings = {
     placeholderImage: 'assets/images/placeholder.jpg'
 };
-
