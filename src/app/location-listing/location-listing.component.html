@@ -1,6 +1,23 @@
-<div class="location_listing">
-  <location
-          *ngFor="let location of locations" [location]="location"
-    >
-  </location>
+<ngb-pagination [collectionSize]="totalLocations" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="setPage(page)" size="sm" aria-label="Default pagination"></ngb-pagination>
+<div class="location_listing list-group row">
+    <div class="col-xs-12">
+    <div class="row listing-fields">
+        <div class="col-xs-2 heading">ID</div>
+        <div class="col-xs-3 heading">City, State, County</div>
+        <div class="col-xs-3 heading">Highway</div>
+        <div class="col-xs-4 heading">Location</div>
+    </div>
+    <location-simple *ngFor="let location of pagedLocations" [location]="location" (click)="loadInfoPanel(location)" class="row list-group-item"></location-simple>
+    </div>
+</div>
+<ngb-pagination [collectionSize]="totalLocations" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="setPage(page)" size="sm" aria-label="Default pagination"></ngb-pagination>
+<div class="sidebar" [@slideInOut]="sliderState">
+    <div class="row">
+        <div class="col-xs-12" (click)="toggleMenu()">
+            <i class="fas fa-times-circle" style="color:#fff; font-size:2em;"></i>
+        </div>
+    </div>
+    <div class="row">
+        <location-detail [location]="selectedlocation" [mapwidth]="480" [mapheight]="300"></location-detail>
+    </div>
 </div>

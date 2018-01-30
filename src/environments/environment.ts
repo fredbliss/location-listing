@@ -19,6 +19,6 @@ export const googleMapsConfig = {
 };
 
 export const generalSettings = {
-    placeholderImage: 'assets/images/placeholder.jpg'
+    placeholderImage: 'assets/location-manager/assets/small/placeholder.jpg'
 };
 

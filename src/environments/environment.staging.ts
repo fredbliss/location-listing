@@ -2,7 +2,7 @@
 import 'zone.js/dist/zone';
 
 export const environment = {
-  production: true,
+  production: false,
   domain: 'https://vo.intelligentspark.com',
   apiUrl: 'https://vo.intelligentspark.com/assets/location-manager-api/public',
   assetsUrl: '/assets/location-manager/assets',
@@ -14,5 +14,5 @@ export const googleMapsConfig = {
 };
 
 export const generalSettings = {
-    placeholderImage: 'assets/images/placeholder.jpg'
+    placeholderImage: 'assets/location-manager/assets/small/placeholder.jpg'
 };

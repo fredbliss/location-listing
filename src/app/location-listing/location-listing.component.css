@@ -1,0 +1,51 @@
+.sidebar {
+    height: 100%; /* 100% Full-height */
+    position: fixed; /* Stay in place */
+    top: 0; /* Stay at the top */
+    left: auto;
+    right: 0;
+    bottom: 0;
+    background-color: #0d3373;
+    color: #fff;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px; /* Place content 60px from the top */
+    transition: 0.3s; /* 0.5 second transition effect to slide in the sidenav */
+    width: 30%;
+    min-width: 350px;
+    z-index: 9999;
+    border-left: 2px solid #000d47;
+}
+
+.list-group-item{
+    background-color: #0d3373;
+    border:none;
+}
+
+
+.list-group-item:hover{
+    background-color: #000d47;
+}
+
+.listing-fields .heading{
+    color: #fff200;
+    font-weight: bold;
+}
+
+.listing-fields{
+    padding: 5px 0px 5px 0px;
+    background: #1f65d8; /* Old browsers */
+    background: -moz-linear-gradient(top, #1f65d8 0%, #12469b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #1f65d8 0%,#12469b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #1f65d8 0%,#12469b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f65d8', endColorstr='#12469b',GradientType=0 );
+}
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+        width: 100%;
+    }
+
+    .list-group-item :nth-of-type(odd){
+        background-color: #000d47;
+    }
+}
