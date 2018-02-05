@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import 'rxjs/Rx';
 import { LocationService } from "../shared/services/location.service";
 import { PagerService } from "../shared/services/pager-service.service";
 import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { Location } from "../models";
+import { ListingFilter } from "../shared/interfaces/listing-filter";
 import * as kf from '../shared/animations/keyframes';
 
 @Component({
@@ -19,7 +22,7 @@ import * as kf from '../shared/animations/keyframes';
 				transform: 'translate3d(100%, 0, 0)'
 			})),
 			transition('in => out', animate('200ms ease-in-out')),
-			transition('out => in', animate('200ms ease-in-out'))
+			transition('out => in', animate('200ms ease-out-in'))
 		]),
 		trigger( 'swipeAnimator', [
 			transition('* => slideOutRight', animate(1000, keyframes(kf.slideOutRight)))
@@ -30,7 +33,8 @@ export class LocationListingComponent implements OnInit {
 
 	// array of all items to be paged
 	private allLocations: Location[];
-
+	private filteredLocations: Location[];
+	listingFilterForm: FormGroup;
 	// pager object
 	pager: any = {};
 	page: number = 1;
@@ -39,22 +43,58 @@ export class LocationListingComponent implements OnInit {
 	animationState: string;
 	// paged items
 	pagedLocations: Location[];
-
+	cityOptions: string[];
+	stateOptions: string[];
+	countyOptions: string[];
+	highwayOptions: string[];
 	itemsPerPage: number = 12;
 	totalLocations: number;
 
-	constructor(private _locationService: LocationService, private _pagerService: PagerService) {
-
-	}
+	constructor(private fb: FormBuilder, private _locationService: LocationService, private _pagerService: PagerService) { }
 
 	ngOnInit() {
+		this.listingFilterForm = this.fb.group({
+			city: [null],
+			state: [null],
+			county: [null],
+			highway: [null]
+		});
+
 		this._locationService.getLocations().subscribe(
 			data => {
 				this.allLocations = data;
+				this.filteredLocations = this.allLocations;
 				this.totalLocations = data.length;
+				this.cityOptions = Array.from(new Set(data.map((item: any) => item.city)));
+				this.stateOptions = Array.from(new Set(data.map((item: any) => item.state)));
+				this.countyOptions = Array.from(new Set(data.map((item: any) => item.county)));
+				this.highwayOptions = Array.from(new Set(data.map((item: any) => item.highway)));
 				this.setPage(1);
 			}
 		);
+
+		this.listingFilterForm.valueChanges.subscribe(data => this.filterLocations(data));
+	}
+
+	reset() {
+		this.listingFilterForm.reset();
+		this.filteredLocations = this.allLocations;
+	}
+
+	filterLocations(filterValues) {
+
+		//remove null properties from the filter object.
+		Object.keys(filterValues).forEach(function(key) {
+			if (filterValues[key] == null) delete filterValues[key]
+		});
+
+		this.filteredLocations = this.allLocations.filter(item => {
+
+			return Object.keys(filterValues).every(key => {
+				return (new RegExp(filterValues[key], 'i').test(item[key]));
+			});
+		});
+
 	}
 
 	setPage(page: number) {

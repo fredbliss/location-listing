@@ -12,13 +12,15 @@
       <div class="row">City: {{location.city}}</div>
       <div class="row">Billboard ID: {{location.billboard_id}}</div>
       <div class="row">Location: {{location.detail}}</div>
-        <div class="row">Orientation: <ul><li *ngFor="let direction of location.directions">{{direction.facing_desc}}</li></ul></div>
+      <div class="row">Orientation:</div>
+      <div classs="row"><ul><li *ngFor="let direction of location.directions">{{direction.facing_desc}}</li></ul></div>
     </div>
     <div class="col-xs-6">
       <div class="row">Size: {{location.size}}</div>
       <div class="row">County: {{location.county}}</div>
       <div class="row">Highway: {{location.highway}}</div>
-      <div class="row">Directions:<br>
+      <div class="row">Directions:</div>
+      <div class="row">
         <span *ngFor="let direction of location.directions">
           <a href="{{apibase}}/locations/{{direction.id}}" target="_blank" [ngSwitch]="direction.facing">
               <i *ngSwitchCase="'northbound'" class="fas fa-arrow-alt-circle-up" placement="top" ngbTooltip="Northbound" style="font-size:2em;"></i>
