@@ -1,6 +1,6 @@
 <div *ngIf="location" class="col-xs-12">
   <div class="assets row">
-    <div class="image col-xs-6" *ngFor="let direction of location.directions"><img style="width:100%;" src="assets/location-manager/assets/small/{{location.billboard_id}} {{direction.panel}}.jpg" src-fallback="{{ placeholder }}" class="img-responsive"></div>
+    <div class="image col-xs-6" *ngFor="let direction of location.directions"><img style="width:100%;" src="assets/location-manager/assets/small/{{direction.image}}" src-fallback="{{ placeholder }}" class="img-responsive"></div>
   </div>
   <div class="map row">
     <div class="col-xs-12">

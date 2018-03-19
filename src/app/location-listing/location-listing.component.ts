@@ -22,7 +22,7 @@ import * as kf from '../shared/animations/keyframes';
 				transform: 'translate3d(100%, 0, 0)'
 			})),
 			transition('in => out', animate('200ms ease-in-out')),
-			transition('out => in', animate('200ms ease-out-in'))
+			transition('out => in', animate('200ms ease-in-out'))
 		]),
 		trigger( 'swipeAnimator', [
 			transition('* => slideOutRight', animate(1000, keyframes(kf.slideOutRight)))

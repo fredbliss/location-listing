@@ -10,28 +10,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LocationSimpleComponent } from './location-simple/location-simple.component';
 import { ImgFallbackModule } from 'ngx-img-fallback';
 
-import { HammertimeDirective } from './shared/directives/hammertime.directive';
-
-import * as Hammer from 'hammerjs';
-import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-
-import { ListingFiltersPipe } from './shared/pipes/listing-filters.pipe';
-
-export class MyHammerConfig extends HammerGestureConfig  {
-	overrides = <any>{
-		// override hammerjs default configuration
-		'swipe': { direction: Hammer.DIRECTION_ALL  }
-	}
-}
-
 @NgModule({
   declarations: [
     AppComponent,
     LocationListingComponent,
     LocationDetailComponent,
-    LocationSimpleComponent,
-    HammertimeDirective,
-    ListingFiltersPipe
+    LocationSimpleComponent
   ],
   imports: [
     BrowserModule,
@@ -41,11 +25,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
 	ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  providers: [HttpClientModule,{
-    provide: HAMMER_GESTURE_CONFIG,
-	useClass: MyHammerConfig
-    }
-	],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
